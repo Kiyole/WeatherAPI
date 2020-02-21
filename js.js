@@ -45,7 +45,7 @@ function getCity(event) {
     var data = response
     console.log(data)
     console.log(data.list[0].main.temp - KELVIN);
-    weather.tempature = Math.floor(data.list[0].main.temp - KELVIN);
+    weather.tempature = Math.floor((data.list[0].main.temp - 273) *1.8) + 32;
     weather.description = data.list[0].weather[0].description;
     console.log(weather.description);
     weather.humidity = data.list[0].main.humidity;
@@ -60,7 +60,7 @@ function getCity(event) {
     show5dayWeather(data)
 
     $('#mainCity').text(weather.city + ' (' + currentDate + ')');
-    $('#mainTemp').text('Tempature: ' + weather.tempature + 'C*');
+    $('#mainTemp').text('Tempature: ' + weather.tempature + 'F*');
     $('#mainHumidity').text('Humidity: ' + weather.humidity);
     $('#mainWindS').text('Wind Speed: ' + weather.speed);
 
@@ -93,22 +93,27 @@ function getCity(event) {
  function show5dayWeather(data){
     console.log(data)
     
-    for( var i = 0; i < data.length; i++){
-    if(data.list[i].dt_txt.indexOf('12:00:00') = true){
+    for( var i = 0; i < 40; i++){
+    if(data.list[i].dt_txt.indexOf("12:00:00") !== -1){
       var day = data.list[i].dt
-
+      var dayDate = (moment(day, "X").format("MMM Do YY"));
+      var temp = data.list[i].main.temp;
+      var humid = data.list[i].main.humidity;
+      var iconimg = data.list[i].weather[0].icon;
+      var Ftemp = Math.floor((temp - 273) *1.8) + 32;
       var content = `
-    <div class="card">
+    <div class="card fiveDay">
     <div class="card-body">
-      <h4 class="card-title">${day}</h4>
-      <p class="card-text">${weather.description}</p>
-      <p class = 'card-text'>${weather.tempature}</p>
-      <img src="http://openweathermap.org/img/wn/"${weather.icon}".png">
+      <h4 class="card-title">${dayDate}'</h4>
+      <h5 class="card-text">Temp: ${Ftemp} F*</h5>
+      <h5 class = 'card-text'>Humidity: ${humid} %</h5>
+      <img src="http://openweathermap.org/img/wn/"${iconimg}.icon}".png">
       
       
     </div>
   </div>
           `
+
       $('.fiveDayDisplay').append(content);
     }
     }

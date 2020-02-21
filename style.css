@@ -17,6 +17,8 @@ h1{
 }
 .card {
   width: 200px;
+  display: inline-block;
+  
 }
 .weather{
  text-align: center;
@@ -37,3 +39,4 @@ h1{
   .recentCity{
     text-align: left;
   }
+  
