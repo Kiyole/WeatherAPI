@@ -1,0 +1,39 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+ }
+
+
+
+ .inputDiv{
+   float: left;
+   position: absolute;
+   margin-left: 5px;
+   display: inline-block;
+ }   
+h1{
+  text-align: center;
+}
+.card {
+  width: 200px;
+}
+.weather{
+ text-align: center;
+ margin-top: 40px;
+ 
+}
+.jumbotron{
+  margin-left: 270px;
+  margin-top: 0px;}
+
+.citySearch{
+  color: rgb(19, 51, 196);
+  font-size: 18px;
+  display: block;
+  -webkit-column-break-inside: avoid;
+  margin: left;
+  }
+  .recentCity{
+    text-align: left;
+  }
