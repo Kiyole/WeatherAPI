@@ -15,8 +15,7 @@ h1{
 }
 .card {
   width: 200px;
-  display: none;
-  
+  display: inline-block;
 }
 .weather{
  text-align: center;
